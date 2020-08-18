@@ -1,0 +1,14 @@
+1、下载源代码下载地址：http://www.ijg.org/。注意：一定要下载win32 版本
+2、编译源代码.
+
+A、解压源代码，修改源代码中jconfig.vc为jconfig.h；
+B、添加环境变量PATH，C:\Program Files\Microsoft Visual Studio 10.0\VC\bin；
+(vs2003) 可能需要mspdb71.db
+
+C、修改makefile.vc，将 Pull in standard variable definitions下面的一行换为：
+
+#!include <win32.mak>
+!include <C:\Program Files\Microsoft SDKs\Windows\v7.0A\Include\win32.mak>
+
+D、进入命令提示环境下，输入：vcvars32 回车，这是一个用来设置VC路径环境的批处理；
+E、编译生成库文件 命令：nmake /f makefile.vc nodebug=1；

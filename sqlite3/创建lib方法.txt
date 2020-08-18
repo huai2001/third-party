@@ -1,0 +1,5 @@
+打开VS 自带的命令行工具，输入
+
+LIB /DEF:SQLite3.def /machine:IX86
+
+这样就行成了SQLite3.lib 和 SQLite3.exp
