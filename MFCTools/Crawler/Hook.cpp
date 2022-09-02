@@ -66,7 +66,7 @@ static bool_t WINAPI ZwQueryVirtualMemory(HANDLE ProcessHandle, PVOID BaseAddres
 static void _CC_CALL_ _PushMap(HICON hIcon, const tchar_t* szModule, DWORD dwBaseAddress, DWORD dwBaseSize) {
 	tagProcessModule *_left = NULL;
 	int32_t result = 0;
-	_cc_rb_node_t **node = &(gProcessModuleMap.rb_node), *parent = NULL;
+	_cc_rbtree_iterator_t **node = &(gProcessModuleMap.rb_node), *parent = NULL;
 
 	while (*node) {
 		_left = _cc_upcast(*node, tagProcessModule, node);
@@ -98,13 +98,13 @@ static void _CC_CALL_ _PushMap(HICON hIcon, const tchar_t* szModule, DWORD dwBas
 	}
 }
 
-static int32_t _CC_CALL_ _FindMap(_cc_rb_node_t* left, pvoid_t args) {
+static int32_t _CC_CALL_ _FindMap(_cc_rbtree_iterator_t* left, pvoid_t args) {
 	tagProcessModule *_left = _cc_upcast(left, tagProcessModule, node);
 
 	return _tcscmp((const tchar_t*)args, _left->szModule);
 }
 
-static void _CC_CALL_ _FreeMap(_cc_rb_node_t *node) {
+static void _CC_CALL_ _FreeMap(_cc_rbtree_iterator_t *node) {
 	tagProcessModule *item = _cc_upcast(node, tagProcessModule, node);
 	_cc_free(item);
 }
@@ -171,18 +171,18 @@ void _CC_CALL_ EnumProcessModule(DWORD dwProcessID)
 }
 
 tagProcessModule* _CC_CALL_ FindProcessModule(const tchar_t *szModuleName) {
-	_cc_rb_node_t *node = _cc_rb_get(&gProcessModuleMap, (pvoid_t)szModuleName, _FindMap);
+	_cc_rbtree_iterator_t *node = _cc_rb_get(&gProcessModuleMap, (pvoid_t)szModuleName, _FindMap);
 	if (node) {
 		return _cc_upcast(node, tagProcessModule, node);
 	}
 	return NULL;
 }
 
-_cc_rb_node_t* _CC_CALL_ FirstProcessModule() {
+_cc_rbtree_iterator_t* _CC_CALL_ FirstProcessModule() {
 	return _cc_rb_first(&gProcessModuleMap);
 }
 
-_cc_rb_node_t* _CC_CALL_ LastProcessModule() {
+_cc_rbtree_iterator_t* _CC_CALL_ LastProcessModule() {
 	return _cc_rb_last(&gProcessModuleMap);
 }
 

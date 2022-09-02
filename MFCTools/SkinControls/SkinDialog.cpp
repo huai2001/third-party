@@ -1020,14 +1020,14 @@ HBRUSH CSkinDialog::OnCtlColor(CDC * pDC, CWnd * pWnd, UINT nCtlColor)
 	case CTLCOLOR_DLG:
 	case CTLCOLOR_BTN:
 	case CTLCOLOR_STATIC:
-		{
+        {
 			pDC->SetBkMode(TRANSPARENT);
 			pDC->SetTextColor(m_SkinAttribute.m_crControlText);
-			return m_SkinAttribute.m_brBackGround;
-		}
+            return m_SkinAttribute.m_brBackGround;
+        }
 	}
-
-	return __super::OnCtlColor(pDC,pWnd,nCtlColor);
+    
+    return __super::OnCtlColor(pDC,pWnd,nCtlColor);
 }
 
 

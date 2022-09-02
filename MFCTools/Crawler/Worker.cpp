@@ -130,7 +130,6 @@ int32_t _CC_CALL_ doStartingWorker(_cc_thread_t *t, pvoid_t args) {
 #endif
 
 	EnableDebugPrivileges();
-	_cc_init_udp_log(_T("127.0.0.1"), _T("8600"));
 
 	pDataMgr = FindProcessModule(_T("DataMgr.dll"));//
 

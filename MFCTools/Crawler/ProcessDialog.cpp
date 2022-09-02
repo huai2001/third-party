@@ -109,7 +109,7 @@ void CProcessDialog::OnNMLClickList(NMHDR *pNMHDR, LRESULT *pResult)
 		tagProcessData *p = (tagProcessData*)m_ListCtrl.GetItemData(iItem);
 		EnumProcessModule(p->dwProcessID);
 		m_ModuleListCtrl.DeleteAllItems();
-		_cc_rb_node_t *v;
+		_cc_rbtree_iterator_t *v;
 		for (v = FirstProcessModule(); v != NULL; v = _cc_rb_next(v)) {
 			m_ModuleListCtrl.InsertDataItem(_cc_upcast(v, tagProcessModule, node));
 		}

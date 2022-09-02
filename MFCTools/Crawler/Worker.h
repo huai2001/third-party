@@ -79,8 +79,6 @@ typedef struct tagCrawlerConfig {
 
 #pragma pack()
 
-extern tagCrawlerScreenshot gCrawlerScreenshot;
-extern tagCrawlerConfig gCrawlerConfig;
 extern LPCTSTR gProductName;
 
 int32_t _CC_CALL_ doStartingWorker(_cc_thread_t *t, pvoid_t args);

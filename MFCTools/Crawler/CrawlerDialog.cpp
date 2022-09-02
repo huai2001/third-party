@@ -310,7 +310,7 @@ LRESULT CCrawlerDialog::OnMessageEvent(WPARAM wParam, LPARAM lParam)
 
 			EnumProcessModule(m_dwProcessID);
 
-			_cc_rb_node_t *v = NULL;
+			_cc_rbtree_iterator_t *v = NULL;
 			for (v = FirstProcessModule(); v != NULL; v = _cc_rb_next(v)) {
 				m_ListCtrl.InsertDataItem(_cc_upcast(v, tagProcessModule, node));
 			}
